@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transparent to Black Top Menu on Scroll</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            /* Set font family to Montserrat */
+            margin: 0;
+            padding: 0;
+            background-color: gray;
+            height: 200vh;
+        }
+
+        .fa-solid {
+            padding: 1px 5px 0px 5px;
+        }
+
+        .item-1 .fa-solid {
+            transform: rotate(180deg);
+        }
+
+        .item-1:hover .fa-solid {
+            transform: rotate(0deg);
+            transition: .05s;
+        }
+
+        .item-2 .fa-solid {
+            transform: rotate(180deg);
+        }
+
+        .item-2:hover .fa-solid {
+            transform: rotate(0deg);
+            transition: .05s;
+        }
+
+        .item-2>.sub-menu:hover .fa-solid {
+            transform: rotate(0deg);
+        }
+
+        .item-1>.sub-menu:hover .fa-solid {
+            transform: rotate(0deg);
+        }
+
+        .top-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            /* Initially 100% width */
+            background-color: transparent;
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0px 20px;
+            /* Adjusted padding for mobile */
+            font-size: 14px;
+            /* Change font size to 14px */
+        }
+
+        .top-menu.scrolled {
+            background-color: #191919;
+            width: 100%;
+        }
+
+        @media (min-width:360px) and (max-width: 768px) {
+            .menu-items li {
+                list-style: none;
+            }
+
+            .menu-items li .sub-menu {
+                display: none;
+            }
+
+            .menu-items li:hover .sub-menu {
+                display: block;
+                /* Show dropdown menu on hover */
+                border-radius: 10px;
+
+            }
+        }
+
+        @media only screen and (min-width: 768px) {
+            .top-menu {
+                padding: 0px 18.4%;
+                /* Adjusted padding for desktop */
+            }
+
+            .menu-items {
+                display: flex !important;
+                /* Show menu items on desktop */
+            }
+
+            .menu-items li {
+                margin: 0 15px;
+                /* Adjusted margin for desktop */
+                position: relative;
+                /* Added relative positioning for dropdown */
+                list-style: none;
+                /* Remove bullet icons */
+            }
+
+            .sub-menu {
+                display: none;
+                /* Initially hide dropdown menu */
+                position: absolute;
+                top: 100%;
+                left: 0;
+
+                background-color: #fff;
+                padding: 10px;
+                padding-right: 20px;
+                /* Adding padding to the right */
+                z-index: 1000;
+            }
+
+            .menu-items li:hover .sub-menu {
+                display: block;
+                /* Show dropdown menu on hover */
+                border-radius: 10px;
+            }
+
+            .sub-menu li {
+                margin: 5px 0;
+                /* Adjusted margin for dropdown menu items */
+                font-size: 14px;
+                /* Change font size to 14px */
+            }
+
+            .sub-menu li a {
+                display: block;
+                /* Ensure the dropdown text stays on one line */
+                color: #000 !important;
+                /* Change color to black and use !important to ensure it overrides other styles */
+                text-decoration: none;
+                transition: color 0.3s;
+                padding: 10px 20px 5px;
+                /* Adjusted padding for dropdown items */
+                font-weight: bold;
+                font-size: 14px;
+                white-space: nowrap;
+                /* Ensure the text doesn't wrap */
+            }
+        }
+
+        .menu-items {
+            list-style-type: none;
+            padding-top: 10px;
+            margin: 0;
+            display: none;
+            /* Initially hidden on mobile */
+        }
+
+        .menu-items.show {
+            display: flex;
+            /* Show menu items when the show class is applied */
+            flex-direction: column;
+            /* Align menu items vertically */
+            background-color: #303031;
+            /* Background color for mobile menu */
+            padding: 20px;
+            /* Adjusted padding for mobile */
+            width: 100%;
+            /* Adjusted width for mobile */
+            position: absolute;
+            top: 100%;
+            /* Position below the menu */
+            left: 0;
+            z-index: 999;
+            /* Ensure menu items are on top */
+        }
+
+        .menu-items li {
+            margin: 15px 0;
+            /* Adjust margin for mobile */
+            padding: 0px 0px 10px 0px;
+        }
+
+        .menu-items li a {
+            padding: 5px 45px 5px 25px;
+            color: #fff;
+            /* Change color to white on mobile */
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: bold;
+            font-size: 14px;
+            /* Change font size to 14px */
+        }
+
+        .menu-items li a:hover {
+            color: #fff;
+        }
+
+        .logo img {
+            width: 100px;
+            /* Adjust the width of the logo as needed */
+            height: 80px;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            display: none;
+            /* Hide the menu icon by default */
+        }
+
+        @media only screen and (max-width: 768px) {
+            .menu-items {
+                display: none;
+                /* Hide the menu items on smaller screens */
+            }
+
+            .menu-icon {
+                display: flex;
+                /* Show the menu icon on smaller screens */
+                align-items: center;
+                /* Center the icon vertically */
+            }
+
+            .contact-button {
+                display: none;
+                /* Hide the contact button on smaller screens */
+            }
+
+            .animated-icon {
+                width: 17px;
+                /* Adjusted width for mobile navbar icon */
+                height: 17px;
+                /* Adjusted height for mobile navbar icon */
+                position: relative;
+                transform: rotate(0deg);
+                transition: .5s ease-in-out;
+                cursor: pointer;
+                display: block;
+            }
+
+            .animated-icon span {
+                display: block;
+                position: absolute;
+                height: 2px;
+                /* Adjusted height for the lines in the navbar icon */
+                width: 100%;
+                background: #fff;
+                border-radius: 3px;
+                opacity: 1;
+                left: 0;
+                transform: rotate(0deg);
+                transition: .25s ease-in-out;
+            }
+
+            .animated-icon span:nth-child(1) {
+                top: 0px;
+            }
+
+            .animated-icon span:nth-child(2),
+            .animated-icon span:nth-child(3) {
+                top: 5px;
+                /* Adjusted top position for the lines in the navbar icon */
+            }
+
+            .animated-icon span:nth-child(4) {
+                top: 10px;
+                /* Adjusted top position for the lines in the navbar icon */
+            }
+
+            .menu-icon.open .span-1 {
+                top: 10px;
+                width: 0%;
+                left: 50%;
+            }
+
+            .menu-icon.open .span-2 {
+                transform: rotate(45deg);
+            }
+
+            .menu-icon.open .span-3 {
+                transform: rotate(-45deg);
+            }
+
+            .menu-icon.open .span-4 {
+                top: 10px;
+                width: 0%;
+                left: 50%;
+            }
+        }
+
+        .contact-button a {
+            margin-right: 20px;
+            background: #de201c;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            text-decoration: none !important;
+            color: #fff;
+            padding-left: 50px;
+            /* 50px padding on the left side */
+            padding: 15px 40px;
+            /* Padding adjusted */
+            font-family: 'Montserrat', sans-serif;
+            /* Set font family to Montserrat */
+            font-size: 14px;
+            /* Change font size to 14px */
+        }
+
+        #top-menu .contact-button:hover a {
+            background-color: #000;
+            color: #fff;
+            border: none;
+        }
+
+        .contact-button {
+            color: #fff;
+        }
+
+        .contact {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="top-menu" id="top-menu">
+        <div class="logo">
+            <img src="download.png" alt="">
+        </div>
+        <ul class="menu-items">
+            <li><a href="#">À PROPOS</a></li>
+            <li class="item-1"><a href="#">SUCCURSALES<i class="fa-solid fa-angle-up"></i></a>
+                <ul class="sub-menu">
+                    <li><a href="#">LEVIS </a></li>
+                    <li><a href="#">ST-NICOLAS</a></li>
+                    <li><a href="#">ST-APOLLINAIRE</a></li>
+                    <li><a href="#">CHARNY</a></li>
+                    <li><a href="#">STE-FOY</a></li>
+                    <li><a href="#">QUÉBEC</a></li>
+                    <li><a href="#">STE-MARIE</a></li>
+                </ul>
+            </li>
+            <li class="item-2"><a href="#">SERVICES<i class="fa-solid fa-angle-up"></i></a>
+                <ul class="sub-menu">
+                    <li><a href="#">COURS DE GROUPE </a></li>
+                    <li><a href="#">ENTRAÎNEMENT PRIVÉ</a></li>
+                    <li><a href="#">TEAM FITNESS</a></li>
+                    <li><a href="#">FORFAIT ENTREPRISE</a></li>
+                </ul>
+            </li>
+
+
+            <li><a href="#">BLOG</a></li>
+        </ul>
+        <div class="contact-button">
+            <a href="" class="contact">Contactez-nous</a>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="animated-icon">
+                <span class="span-1"></span>
+                <span class="span-2"></span>
+                <span class="span-3"></span>
+                <span class="span-4"></span>
+            </div>
+        </div>
+    </nav>
+    <script>
+        function toggleMenu() {
+            var menuItems = document.querySelector('.menu-items');
+            menuItems.classList.toggle('show');
+
+            var menuIcon = document.querySelector('.menu-icon');
+
+            if (menuItems.classList.contains('show')) {
+                menuIcon.classList.add('open');
+            } else {
+                menuIcon.classList.remove('open');
+            }
+        }
+
+        window.addEventListener('scroll', function () {
+            var topMenu = document.getElementById('top-menu');
+            if (window.scrollY > 50) {
+                topMenu.classList.add('scrolled');
+            } else {
+                topMenu.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>
