@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>FAQ's</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+      <style>
+            * {
+                  padding: 0;
+                  margin: 0;
+                  box-sizing: border-box;
+                  font-family: "Roboto", sans-serif;
+            }
+
+            body {
+                  background-color: rgb(240, 240, 240);
+                  height: 100vh;
+                  display: flex;
+                  justify-content: center;
+            }
+
+            section {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  margin-top: 50px;
+            }
+
+            section h1 {
+                  margin-bottom: 30px;
+                  font-size: 50px;
+                  color: crimson;
+            }
+
+            .main-faq {
+                  display: flex;
+                  justify-content: center;
+                  margin-bottom: 30px;
+            }
+
+            .faq {
+                  width: 55%;
+                  background: white;
+                  padding: 0 20px;
+                  border-radius: 5px;
+            }
+
+            .faq-header {
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 20px 0;
+                  align-items: center;
+            }
+
+            .faq-button {
+                  background: transparent;
+                  border: none;
+                  color: crimson;
+                  font-size: 20px;
+                  cursor: pointer;
+                  transition: all 0.3s ease-in-out;
+            }
+
+            .faq-text-area {
+                  background: white;
+                  line-height: 1.5;
+                  overflow: hidden;
+            }
+      </style>
+</head>
+
+<body>
+      <section>
+            <h1>Best FAQ's</h1>
+            <div class="main-faq">
+                  <div class="faq">
+                        <div class="faq-header">
+                              <h2>What is Lorem Ipsum?</h2>
+                              <button class="faq-button"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="faq-text-area">
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto odit distinctio quasi
+                              totam minus veniam voluptatibus dolore suscipit.
+                        </div>
+                  </div>
+            </div>
+            <div class="main-faq">
+                  <div class="faq">
+                        <div class="faq-header">
+                              <h2>What is Lorem Ipsum?</h2>
+                              <button class="faq-button"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="faq-text-area">
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto odit distinctio quasi
+                              totam minus veniam voluptatibus dolore suscipit.
+                        </div>
+                  </div>
+            </div>
+            <div class="main-faq">
+                  <div class="faq">
+                        <div class="faq-header">
+                              <h2>What is Lorem Ipsum?</h2>
+                              <button class="faq-button"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="faq-text-area">
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto odit distinctio quasi
+                              totam minus veniam voluptatibus dolore suscipit.
+                        </div>
+                  </div>
+            </div>
+      </section>
+      <script>
+                  const faqButtons = document.querySelectorAll(".faq-button");
+                  const faqTextAreas = document.querySelectorAll(".faq-text-area");
+                  const faqHeaders = document.querySelectorAll(".faq-header");
+
+                  faqTextAreas.forEach(faqText => {
+                        faqText.style.height = "0px";
+                        faqText.style.padding = "0px";
+                  });
+
+                  faqButtons.forEach((button, index) => {
+                        button.addEventListener("click", () => {
+                              const faqText = faqTextAreas[index];
+                              const faqHeader = faqHeaders[index];
+
+                              if (faqText.style.height === "0px") {
+                                    faqText.style.height = "auto";
+                                    faqText.style.padding = "20px 0";
+                                    faqText.style.transition = "all 0.3s ease-in-out";
+                                    faqHeader.style.borderBottom = "1px solid crimson";
+                                    button.innerHTML = "<i class='fa-solid fa-minus'></i>";
+                              } else {
+                                    faqText.style.height = "0px";
+                                    faqText.style.padding = "0px";
+                                    faqHeader.style.borderBottom = "none";
+                                    button.innerHTML = "<i class='fa-solid fa-plus'></i>";
+                              }
+                        });
+                  });
+      </script>
+</body>
+
+</html>
