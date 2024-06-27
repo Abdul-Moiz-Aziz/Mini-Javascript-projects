@@ -13,3 +13,7 @@ Each mini project is contained in its own directory and includes the following f
 - `index.html`: The main HTML file for the project.
 - `styles.css`: The CSS file containing styles for the project (if applicable).
 - `script.js`: The JavaScript file containing the functionality for the project.
+
+## How to Download the Source Code
+
+Click the top green <b>Code</b> button and download the <b>ZIP file</b> of all projects.
