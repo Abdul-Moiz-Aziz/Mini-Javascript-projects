@@ -4,7 +4,7 @@ This repository contains a number of mini javascript projects. Each project is s
 
 ## Introduction
 
-Welcome to the Mini JavaScript Projects repository! These projects are for beginners who wants to become expert in javascript because these are basic projects that builds the base and logic of a coder. I hope these projects will help you to think like a programmer.
+Welcome to the Mini JavaScript Projects repository! These projects are for beginners who want to become experts in JavaScript because these are basic projects that build the base and logic of a coder. I hope these projects will help you think like a programmer.
 
 ## Project Structure
 
